@@ -32,46 +32,46 @@ def freev2ray():  # https://view.freev2ray.org
     return vmess
 
 
-def freess():  # https://io.freess.info/#portfolio-preview  救援网址:f55.fun 或 55r.run
-    from PIL import Image
-    from io import BytesIO
-    from pyzbar.pyzbar import decode
-    import base64
-    url = 'https://io.freess.info/'
-    header = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
-    resp = session.get(url=url, headers=header, timeout=10)
-    data = parsel.Selector(resp.text)
-    jpg_list = data.xpath(
-        '//*[@id="portfolio-preview"]/div/div//@href').extract()
-    for jpg in jpg_list:
-        jpg_base64 = jpg.split(',')[1]  # 取图片加密数据
-        resp_img = base64.b64decode(jpg_base64)  # 解码
-        img = Image.open(BytesIO(resp_img))  # 读取解码后的图片数据
-        txt_list = decode(img)  # 二维码解码
-        ss = []
-        for txt in txt_list:
-            barcodeData = txt.data.decode("utf-8")
-            ss.append(barcodeData)
-            # print(barcodeData)
-    print(timeformat(), '读取freess数据成功')
+# def freess():  # https://io.freess.info/#portfolio-preview  救援网址:f55.fun 或 55r.run
+#     from PIL import Image
+#     from io import BytesIO
+#     from pyzbar.pyzbar import decode
+#     import base64
+#     url = 'https://io.freess.info/'
+#     header = {
+#         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
+#     resp = session.get(url=url, headers=header, timeout=10)
+#     data = parsel.Selector(resp.text)
+#     jpg_list = data.xpath(
+#         '//*[@id="portfolio-preview"]/div/div//@href').extract()
+#     for jpg in jpg_list:
+#         jpg_base64 = jpg.split(',')[1]  # 取图片加密数据
+#         resp_img = base64.b64decode(jpg_base64)  # 解码
+#         img = Image.open(BytesIO(resp_img))  # 读取解码后的图片数据
+#         txt_list = decode(img)  # 二维码解码
+#         ss = []
+#         for txt in txt_list:
+#             barcodeData = txt.data.decode("utf-8")
+#             ss.append(barcodeData)
+#             # print(barcodeData)
+#     print(timeformat(), '读取freess数据成功')
 
-    return ss
+#     return ss
 
 
-def free_ss():  # https://free-ss.site/
-    import execjs
-    url = 'https://free-ss.site/'
-    header = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
-    resp = session.get(url=url, headers=header, timeout=10)
-    data = parsel.Selector(resp.text)
-    js = data.xpath('//script').extract()[9]
-    js = js.replace('<script>', 'var grecaptcha=[];var grecaptcha.ready=[];')
-    js = js.replace('</script>', '')
-    jscontext = execjs.compile(js)
-    res = jscontext.eval('str')
-    print(res)
+# def free_ss():  # https://free-ss.site/
+#     import execjs
+#     url = 'https://free-ss.site/'
+#     header = {
+#         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
+#     resp = session.get(url=url, headers=header, timeout=10)
+#     data = parsel.Selector(resp.text)
+#     js = data.xpath('//script').extract()[9]
+#     js = js.replace('<script>', 'var grecaptcha=[];var grecaptcha.ready=[];')
+#     js = js.replace('</script>', '')
+#     jscontext = execjs.compile(js)
+#     res = jscontext.eval('str')
+#     print(res)
     # print(js)
     # return vmess
 
@@ -138,37 +138,37 @@ def base64_encode():
     # print(subscribe)
 
 
-def clash():  # URLEncode 处理后，生产clash订阅地址
-    vmess = merge()
-    url = 'https://www.urlencoder.org/'
-    header = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
-    data = {'input': vmess, 'charset': 'UTF-8', 'separator': 'lf'}
-    resp = requests.post(url=url, headers=header, data=data, timeout=10)
-    select = parsel.Selector(resp.text)
-    encodeurl = select.xpath('//*[@id="output"]/text()').extract_first()
-    dingyue = 'https://homecloud.work:320/sub?target=clash&url={}&insert=false'.format(
-        encodeurl)
-    print(timeformat(), '完成订阅转换')
-    return dingyue
+# def clash():  # URLEncode 处理后，生产clash订阅地址
+#     vmess = merge()
+#     url = 'https://www.urlencoder.org/'
+#     header = {
+#         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
+#     data = {'input': vmess, 'charset': 'UTF-8', 'separator': 'lf'}
+#     resp = requests.post(url=url, headers=header, data=data, timeout=10)
+#     select = parsel.Selector(resp.text)
+#     encodeurl = select.xpath('//*[@id="output"]/text()').extract_first()
+#     dingyue = 'https://homecloud.work:320/sub?target=clash&url={}&insert=false'.format(
+#         encodeurl)
+#     print(timeformat(), '完成订阅转换')
+#     return dingyue
 
 
-def copy():
-    import pyperclip  # 粘贴板模块
-    pyperclip.copy(clash())
-    print('复制链接成功')
-    return
+# def copy():
+#     import pyperclip  # 粘贴板模块
+#     pyperclip.copy(clash())
+#     print('复制链接成功')
+#     return
 
 
-def w_yaml():
-    import yaml
-    c = clash()
-    with open("/Users/allian/.config/clash/free.yaml", "r", encoding='utf-8') as f:
-        yaml_obj = yaml.load(f.read(), Loader=yaml.Loader)
-        yaml_obj["proxy-providers"]['Free']['url'] = c
-    with open("/Users/allian/.config/clash/free.yaml", "w", encoding='utf-8') as f:
-        yaml.dump(yaml_obj, f, default_flow_style=False)
-    print(timeformat(), '保存成功！')
+# def w_yaml():
+#     import yaml
+#     c = clash()
+#     with open("/Users/allian/.config/clash/free.yaml", "r", encoding='utf-8') as f:
+#         yaml_obj = yaml.load(f.read(), Loader=yaml.Loader)
+#         yaml_obj["proxy-providers"]['Free']['url'] = c
+#     with open("/Users/allian/.config/clash/free.yaml", "w", encoding='utf-8') as f:
+#         yaml.dump(yaml_obj, f, default_flow_style=False)
+#     print(timeformat(), '保存成功！')
 
 
 def timeformat():
@@ -178,14 +178,5 @@ def timeformat():
 if __name__ == "__main__":
     session = requests.session()
     session.mount('https://', HTTPAdapter(max_retries=3))
-    # free_ss()
-    # free_v2ray()
-    # copy()
-    # c=merge()
-    # c=main()
-    # cc=sorted(set(c), key = c.index)
-    # for i in cc:
     base64_encode()
-    # print(c)
-    # w_yaml()
 
