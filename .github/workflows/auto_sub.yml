@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '2 8,14,20 * * *'
+    - cron: '2 2,8,14,20 * * *'
 jobs:
   csdn-emailbot:
     runs-on: ubuntu-latest
