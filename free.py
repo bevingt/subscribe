@@ -135,6 +135,8 @@ def base64_encode():
     subscribe = base64.b64encode(data.encode())
     with open('list.txt', 'w', encoding='utf-8') as f:
         f.write(subscribe.decode("utf-8"))
+    print(timeformat(), '保存成功')
+    
     # print(subscribe)
 
 
