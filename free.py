@@ -17,7 +17,7 @@ def ishadow():  # https://my.ishadowx.biz
         u = i[:-1]
         vmess_url.append(u)
     print(timeformat(), '读取ishadow数据成功')
-    print('-'*50)
+    print('-'*42)
     return vmess_url
 
 
@@ -30,7 +30,7 @@ def freev2ray():  # https://view.freev2ray.org
     vmess = data.xpath(
         '//*[@id="intro"]/div/div/footer/ul[1]/li[2]/button/@data-clipboard-text').extract()
     print(timeformat(), '读取freev2ray数据成功')
-    print('-'*50)
+    print('-'*42)
     return vmess
 
 
@@ -106,7 +106,7 @@ def free_v2ray():   # https://www.youneed.win
     vmess = re.findall('data-raw="(.*?)"', table)
 
     print(timeformat(), '读取free_v2ray数据成功')
-    print('-'*50)
+    print('-'*42)
     return vmess
     # print(vmess)
 
@@ -118,7 +118,7 @@ def main():
     vmess = heroku+ishadow()+freev2ray()+free_v2ray()
     # vmess = ishadow()+freev2ray()+freess()
     print(timeformat(), '合并数据')
-    print('-'*50)
+    print('-'*42)
     return vmess
 
 
