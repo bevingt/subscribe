@@ -1,6 +1,9 @@
 name: Subscribe_free
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '2 0,6,12,18 * * *'
 jobs:
