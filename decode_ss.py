@@ -82,6 +82,10 @@ def run():
     c=decode_c(keys[2])
     t=get_token()
     ss=getdata3(a,b,c,t)
+    while not ss:
+        ss=getdata3(a,b,c,t)
+        print('连接错误，重试')
+        time.sleep(2)
 
     key = bytes(a, encoding="utf-8")
     iv = bytes(b, encoding="utf-8")
@@ -95,6 +99,7 @@ def run():
     
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), '读取free-ss数据成功')
     print('-'*42)
+    print(ss_url)
     return ss_url
 
 if __name__ == "__main__":
