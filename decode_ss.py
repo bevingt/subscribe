@@ -44,8 +44,13 @@ def decode_c(c):
 def get_token():
     url = 'https://www.recaptcha.net/recaptcha/api2/anchor?ar=1&k=6LfEr5MUAAAAACiN9ZgH4842Va__LHuZTbX7ztl0&co=aHR0cHM6Ly9mcmVlLXNzLnNpdGU6NDQz&hl=zh-CN&v=qc5B-qjP0QEimFYUxcpWJy5B&size=invisible'
     resp = requests.get(url)
-    token = re.findall('value="(.*?)"', resp.text)
-    return token
+    if resp.status_code==200:
+    
+        token = re.findall('value="(.*?)"', resp.text)
+        return token
+    else:
+        print('无法连接')
+        
 
 def getdata3(a,b,c,token):
     url_data={
@@ -59,7 +64,10 @@ def getdata3(a,b,c,token):
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
     }
     resp=requests.post(url=url,headers=headers,data=url_data)
-    return resp.text
+    if resp.status_code==200:
+        return resp.text
+    else:
+        print('获取失败')
     # print(resp.text)
 
 def get_key():
@@ -68,38 +76,52 @@ def get_key():
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
     }
     resp=requests.get(url=url,headers=headers)
-    data = parsel.Selector(resp.text)
-    js = data.xpath('//script').extract()[9]
-    # key_list=re.findall('else{(.*?)}',js)
-    key=re.findall("var [a-z]='(.*?)';",js)[3:]
-    return key
+    if resp.status_code==200:
+
+        data = parsel.Selector(resp.text)
+        js = data.xpath('//script').extract()[9]
+        # key_list=re.findall('else{(.*?)}',js)
+        key=re.findall("var [a-z]='(.*?)';",js)[3:]
+        return key
+    else:
+        print('无法连接')
     # print(key)
 
 def run():
     keys=get_key()
+    # time.sleep(2)
     a=keys[0]
     b=keys[1]
     c=decode_c(keys[2])
     t=get_token()
     ss=getdata3(a,b,c,t)
-    while not ss:
-        ss=getdata3(a,b,c,t)
-        print('连接错误，重试')
-        time.sleep(2)
+
+    # if ss =='':
+    #     ss=getdata3(a,b,c,t)
+    #     print(ss)
+    #     time.sleep(2)
 
     key = bytes(a, encoding="utf-8")
     iv = bytes(b, encoding="utf-8")
     endata = base64.b64decode(str(ss))
     ssdata = decrypt_data(key, iv, endata)
+    # print(ssdata)
+    if ssdata==[]:
+        # ssdata = decrypt_data(key, iv, endata)
+        print('未获取')
     ss_url=[]
     for i in ssdata:
-        ssurl=i[3]+':'+i[4]+'@'+i[1]+':'+i[2]
-        base_ssurl = base64.b64encode(ssurl.encode())
-        ss_url.append('ss://'+base_ssurl.decode("utf-8")+'#free-ss.site')
+        if i[3]!='chacha20':
+            ssurl=i[3]+':'+i[4]+'@'+i[1]+':'+i[2]
+            # print(ssurl)
+            base_ssurl = base64.b64encode(ssurl.encode())
+            ss_url.append('ss://'+base_ssurl.decode("utf-8")+'#'+i[6]+'_free-ss.site')
+        else:
+            continue
+    # print(ss_url) 
     
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), '读取free-ss数据成功')
     print('-'*42)
-    print(ss_url)
     return ss_url
 
 if __name__ == "__main__":
