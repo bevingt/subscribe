@@ -128,7 +128,7 @@ def base64_encode():
     # netlify=netlify()
     subscribe = base64.b64encode(data.encode())
     with open('list.txt', 'w', encoding='utf-8') as f:
-        f.write(subscribe.decode("utf-8"))
+        f.write(subscribe.decode("utf-8")+'\n')
         f.write(netlify())
     print(timeformat(), '保存成功')
     
