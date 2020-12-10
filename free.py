@@ -59,7 +59,12 @@ def freev2ray():  # https://view.freev2ray.org
 #     print(timeformat(), '读取freess数据成功')
 
 #     return ss
-
+def netlify():  # https://jiang.netlify.app/
+    url='https://jiang.netlify.app/'
+    header={
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
+    resp=requests.get(url=url,headers=header)
+    return resp.text
 
 
 def free_v2ray():   # https://www.youneed.win
@@ -100,7 +105,6 @@ def main():
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0yLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjb2xkLWZsb3dlci1lZDhhLmJldmluZ3Qud29ya2Vycy5kZXYiLCJ0eXBlIjoibm9uZSIsInBhdGgiOiJcLyIsIm5ldCI6IndzIiwiYWRkIjoiMS4wLjAuMCJ9', 
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0zLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjcmltc29uLW1vdW50YWluLTZjODQuYmV2aW5ndC53b3JrZXJzLmRldiIsInR5cGUiOiJub25lIiwicGF0aCI6IlwvIiwibmV0Ijoid3MiLCJhZGQiOiIxMDQuMjQuMTM3LjEwMyJ9']
     vmess = heroku+ishadow()+freev2ray()+free_v2ray()+run()
-    print(vmess)
     # vmess = ishadow()+freev2ray()+freess()
     print(timeformat(), '合并数据')
     print('-'*42)
@@ -121,9 +125,11 @@ def merge():
 def base64_encode():
     import base64
     data = merge()
+    # netlify=netlify()
     subscribe = base64.b64encode(data.encode())
     with open('list.txt', 'w', encoding='utf-8') as f:
         f.write(subscribe.decode("utf-8"))
+        f.write(netlify())
     print(timeformat(), '保存成功')
     
     # print(subscribe)
