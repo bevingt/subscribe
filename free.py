@@ -4,6 +4,7 @@ from requests.adapters import HTTPAdapter
 import time
 from decode_ss import run
 
+
 def ishadow():  # https://my.ishadowx.biz
     url = 'https://my.ishadowx.biz'
     header = {
@@ -12,13 +13,13 @@ def ishadow():  # https://my.ishadowx.biz
     data = parsel.Selector(resp.text)
     vmess = data.xpath(
         '//div[@class="hover-text"]/h4/span/@data-clipboard-text').extract()
-    vmess_url = []
+    result = []
     for i in vmess:
         u = i[:-1]
-        vmess_url.append(u)
+        result.append(u)
     print(timeformat(), '读取ishadow数据成功')
     print('-'*42)
-    return vmess_url
+    return result
 
 
 def freev2ray():  # https://view.freev2ray.org
@@ -27,11 +28,11 @@ def freev2ray():  # https://view.freev2ray.org
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
     resp = session.get(url=url, headers=header, timeout=10)
     data = parsel.Selector(resp.text)
-    vmess = data.xpath(
+    result = data.xpath(
         '//*[@id="intro"]/div/div/footer/ul[1]/li[2]/button/@data-clipboard-text').extract()
     print(timeformat(), '读取freev2ray数据成功')
     print('-'*42)
-    return vmess
+    return result
 
 
 # def freess():  # https://io.freess.info/#portfolio-preview  救援网址:f55.fun 或 55r.run
@@ -59,26 +60,28 @@ def freev2ray():  # https://view.freev2ray.org
 #     print(timeformat(), '读取freess数据成功')
 
 #     return ss
+
+
 def netlify():  # https://jiang.netlify.app/
-    url='https://jiang.netlify.app/'
-    header={
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
-    resp=requests.get(url=url,headers=header)
+    url = 'https://jiang.netlify.app/'
+    header = {
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
+    resp = requests.get(url=url, headers=header)
     return resp.text
 
 
-def free_v2ray():   # https://www.youneed.win
+def youneed():   # https://www.youneed.win
     import json
     import re
-    url='https://www.youneed.win/free-v2ray'
-    header={
-              'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
-    resp=session.get(url=url,headers=header)
-    data=re.findall('ps_ajax = ({.*?})',resp.text)[0]
-    js=json.loads(data)
-    geturl=js['ajax_url']
-    nonce=js['nonce']
-    post_id=js['post_id']
+    url = 'https://www.youneed.win/free-v2ray'
+    header = {
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
+    resp = session.get(url=url, headers=header)
+    data = re.findall('ps_ajax = ({.*?})', resp.text)[0]
+    js = json.loads(data)
+    geturl = js['ajax_url']
+    nonce = js['nonce']
+    post_id = js['post_id']
     # url = 'https://www.youneed.win/wp-admin/admin-ajax.php'
     header = {'origin': 'https://www.youneed.win',
               'referer': 'https://www.youneed.win/free-v2ray',
@@ -92,23 +95,23 @@ def free_v2ray():   # https://www.youneed.win
     resp = session.post(url=geturl, headers=header, data=data, timeout=10)
     j = json.loads(resp.text)
     table = j['content']
-    vmess = re.findall('data-raw="(.*?)"', table)
+    result = re.findall('data-raw="(.*?)"', table)
 
-    print(timeformat(), '读取free_v2ray数据成功')
+    print(timeformat(), '读取youneed数据成功')
     print('-'*42)
-    return vmess
+    return result
     # print(vmess)
 
 
 def add():
     heroku = ['vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0xLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJsaXR0bGUtdG9vdGgtMjExNy5iZXZpbmd0LndvcmtlcnMuZGV2IiwidHlwZSI6Im5vbmUiLCJwYXRoIjoiXC8iLCJuZXQiOiJ3cyIsImFkZCI6IjEwNC4yNC4xMzcuMTAzIn0=',
-              'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0yLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjb2xkLWZsb3dlci1lZDhhLmJldmluZ3Qud29ya2Vycy5kZXYiLCJ0eXBlIjoibm9uZSIsInBhdGgiOiJcLyIsIm5ldCI6IndzIiwiYWRkIjoiMS4wLjAuMCJ9', 
+              'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0yLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjb2xkLWZsb3dlci1lZDhhLmJldmluZ3Qud29ya2Vycy5kZXYiLCJ0eXBlIjoibm9uZSIsInBhdGgiOiJcLyIsIm5ldCI6IndzIiwiYWRkIjoiMS4wLjAuMCJ9',
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0zLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjcmltc29uLW1vdW50YWluLTZjODQuYmV2aW5ndC53b3JrZXJzLmRldiIsInR5cGUiOiJub25lIiwicGF0aCI6IlwvIiwibmV0Ijoid3MiLCJhZGQiOiIxMDQuMjQuMTM3LjEwMyJ9']
-    free_ss_data=run()
-    ishadow_data=ishadow()
-    freev2ray_data=freev2ray()
-    free_v2ray_data=free_v2ray()
-    sub = heroku+free_ss_data+ishadow_data+freev2ray_data+free_v2ray_data
+    free_ss_data = run()
+    ishadow_data = ishadow()
+    freev2ray_data = freev2ray()
+    youneed_data = youneed()
+    sub = heroku+free_ss_data+ishadow_data+freev2ray_data+youneed_data
     # vmess = ishadow()+freev2ray()+freess()
     print(timeformat(), '合并数据')
     print('-'*42)
@@ -129,15 +132,17 @@ def merge():
 def base64_encode():
     import base64
     data = merge()
-    # netlify=netlify()
     subscribe = base64.b64encode(data.encode())
-    a=subscribe.decode("utf-8")
-    b=netlify()
-    add=b+'\n'+a
+    return subscribe.decode("utf-8")
+
+
+def savefile():
+    a = base64_encode()
+    b = netlify()
+    add = b+'\n'+a
     with open('list.txt', 'w', encoding='utf-8') as f:
         f.write(add)
     print(timeformat(), '保存成功')
-    
 
 
 # def clash():  # URLEncode 处理后，生产clash订阅地址
@@ -159,8 +164,6 @@ def copy(t):
     import pyperclip  # 粘贴板模块
     pyperclip.copy(t)
     print('复制链接成功')
-    # return
-
 
 # def w_yaml():
 #     import yaml
@@ -180,6 +183,4 @@ def timeformat():
 if __name__ == "__main__":
     session = requests.session()
     session.mount('https://', HTTPAdapter(max_retries=3))
-    base64_encode()
-    # print(netlify())
-
+    savefile()
