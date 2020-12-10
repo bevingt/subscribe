@@ -91,7 +91,7 @@ def run():
     for i in ssdata:
         ssurl=i[3]+':'+i[4]+'@'+i[1]+':'+i[2]
         base_ssurl = base64.b64encode(ssurl.encode())
-        ss_url.append('ss://'+base_ssurl.decode("utf-8"))
+        ss_url.append('ss://'+base_ssurl.decode("utf-8")+'#free-ss.site')
     
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), '读取free-ss数据成功')
     print('-'*42)
