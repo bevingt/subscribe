@@ -2,7 +2,7 @@ import parsel
 import requests
 from requests.adapters import HTTPAdapter
 import time
-
+from decode_ss import run
 
 def ishadow():  # https://my.ishadowx.biz
     url = 'https://my.ishadowx.biz'
@@ -61,22 +61,6 @@ def freev2ray():  # https://view.freev2ray.org
 #     return ss
 
 
-# def free_ss():  # https://free-ss.site/
-#     import execjs
-#     url = 'https://free-ss.site/'
-#     header = {
-#         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15'}
-#     resp = session.get(url=url, headers=header, timeout=10)
-#     data = parsel.Selector(resp.text)
-#     js = data.xpath('//script').extract()[9]
-#     js = js.replace('<script>', 'var grecaptcha=[];var grecaptcha.ready=[];')
-#     js = js.replace('</script>', '')
-#     jscontext = execjs.compile(js)
-#     res = jscontext.eval('str')
-#     print(res)
-    # print(js)
-    # return vmess
-
 
 def free_v2ray():   # https://www.youneed.win
     import json
@@ -115,7 +99,7 @@ def main():
     heroku = ['vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0xLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJsaXR0bGUtdG9vdGgtMjExNy5iZXZpbmd0LndvcmtlcnMuZGV2IiwidHlwZSI6Im5vbmUiLCJwYXRoIjoiXC8iLCJuZXQiOiJ3cyIsImFkZCI6IjEwNC4yNC4xMzcuMTAzIn0=',
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0yLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjb2xkLWZsb3dlci1lZDhhLmJldmluZ3Qud29ya2Vycy5kZXYiLCJ0eXBlIjoibm9uZSIsInBhdGgiOiJcLyIsIm5ldCI6IndzIiwiYWRkIjoiMS4wLjAuMCJ9', 
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0zLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjcmltc29uLW1vdW50YWluLTZjODQuYmV2aW5ndC53b3JrZXJzLmRldiIsInR5cGUiOiJub25lIiwicGF0aCI6IlwvIiwibmV0Ijoid3MiLCJhZGQiOiIxMDQuMjQuMTM3LjEwMyJ9']
-    vmess = heroku+ishadow()+freev2ray()+free_v2ray()
+    vmess = heroku+ishadow()+freev2ray()+free_v2ray()+run()
     # vmess = ishadow()+freev2ray()+freess()
     print(timeformat(), '合并数据')
     print('-'*42)
