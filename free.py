@@ -104,7 +104,7 @@ def main():
     heroku = ['vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0xLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJsaXR0bGUtdG9vdGgtMjExNy5iZXZpbmd0LndvcmtlcnMuZGV2IiwidHlwZSI6Im5vbmUiLCJwYXRoIjoiXC8iLCJuZXQiOiJ3cyIsImFkZCI6IjEwNC4yNC4xMzcuMTAzIn0=',
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0yLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjb2xkLWZsb3dlci1lZDhhLmJldmluZ3Qud29ya2Vycy5kZXYiLCJ0eXBlIjoibm9uZSIsInBhdGgiOiJcLyIsIm5ldCI6IndzIiwiYWRkIjoiMS4wLjAuMCJ9', 
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0zLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjcmltc29uLW1vdW50YWluLTZjODQuYmV2aW5ndC53b3JrZXJzLmRldiIsInR5cGUiOiJub25lIiwicGF0aCI6IlwvIiwibmV0Ijoid3MiLCJhZGQiOiIxMDQuMjQuMTM3LjEwMyJ9']
-    vmess = heroku+ishadow()+freev2ray()+free_v2ray()+run()
+    vmess = heroku+run()+ishadow()+freev2ray()+free_v2ray()
     # vmess = ishadow()+freev2ray()+freess()
     print(timeformat(), '合并数据')
     print('-'*42)
@@ -127,9 +127,16 @@ def base64_encode():
     data = merge()
     # netlify=netlify()
     subscribe = base64.b64encode(data.encode())
+    a=subscribe.decode("utf-8")
+    b=netlify()
+    add=b+'\n'+a
+    # copy(add)
+    # print(len(a),len(b))
+    # print(len(add))
+    # print(base64.b64decode(add))
     with open('list.txt', 'w', encoding='utf-8') as f:
-        f.write(subscribe.decode("utf-8"))
-        f.write(netlify())
+        # f.write(subscribe.decode("utf-8"))
+        f.write(add)
     print(timeformat(), '保存成功')
     
     # print(subscribe)
@@ -150,11 +157,11 @@ def base64_encode():
 #     return dingyue
 
 
-# def copy():
-#     import pyperclip  # 粘贴板模块
-#     pyperclip.copy(clash())
-#     print('复制链接成功')
-#     return
+def copy(t):
+    import pyperclip  # 粘贴板模块
+    pyperclip.copy(t)
+    print('复制链接成功')
+    # return
 
 
 # def w_yaml():
@@ -176,4 +183,5 @@ if __name__ == "__main__":
     session = requests.session()
     session.mount('https://', HTTPAdapter(max_retries=3))
     base64_encode()
+    # print(netlify())
 
