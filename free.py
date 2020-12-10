@@ -100,20 +100,24 @@ def free_v2ray():   # https://www.youneed.win
     # print(vmess)
 
 
-def main():
+def add():
     heroku = ['vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0xLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJsaXR0bGUtdG9vdGgtMjExNy5iZXZpbmd0LndvcmtlcnMuZGV2IiwidHlwZSI6Im5vbmUiLCJwYXRoIjoiXC8iLCJuZXQiOiJ3cyIsImFkZCI6IjEwNC4yNC4xMzcuMTAzIn0=',
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0yLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjb2xkLWZsb3dlci1lZDhhLmJldmluZ3Qud29ya2Vycy5kZXYiLCJ0eXBlIjoibm9uZSIsInBhdGgiOiJcLyIsIm5ldCI6IndzIiwiYWRkIjoiMS4wLjAuMCJ9', 
               'vmess://eyJwb3J0IjoiNDQzIiwicHMiOiJ2MnJheS0zLWhvbWVtZWRpYSIsInRscyI6InRscyIsImlkIjoiYWQ4MDY0ODctMmQyNi00NjM2LTk4YjYtYWI4NWNjODUyMWY3IiwiYWlkIjoiNjQiLCJ2IjoiMiIsImhvc3QiOiJjcmltc29uLW1vdW50YWluLTZjODQuYmV2aW5ndC53b3JrZXJzLmRldiIsInR5cGUiOiJub25lIiwicGF0aCI6IlwvIiwibmV0Ijoid3MiLCJhZGQiOiIxMDQuMjQuMTM3LjEwMyJ9']
-    vmess = heroku+run()+ishadow()+freev2ray()+free_v2ray()
+    free_ss_data=run()
+    ishadow_data=ishadow()
+    freev2ray_data=freev2ray()
+    free_v2ray_data=free_v2ray()
+    sub = heroku+free_ss_data+ishadow_data+freev2ray_data+free_v2ray_data
     # vmess = ishadow()+freev2ray()+freess()
     print(timeformat(), '合并数据')
     print('-'*42)
-    return vmess
+    return sub
 
 
 def merge():
     s = ''
-    v_url = main()
+    v_url = add()
     for i in range(len(v_url)):
         if i == len(v_url)-1:
             s = s + v_url[i]
@@ -130,16 +134,10 @@ def base64_encode():
     a=subscribe.decode("utf-8")
     b=netlify()
     add=b+'\n'+a
-    # copy(add)
-    # print(len(a),len(b))
-    # print(len(add))
-    # print(base64.b64decode(add))
     with open('list.txt', 'w', encoding='utf-8') as f:
-        # f.write(subscribe.decode("utf-8"))
         f.write(add)
     print(timeformat(), '保存成功')
     
-    # print(subscribe)
 
 
 # def clash():  # URLEncode 处理后，生产clash订阅地址
