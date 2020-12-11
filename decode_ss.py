@@ -112,7 +112,7 @@ def run():
             print('data3数据未抓到，重试')
         else:
             count += 1
-    print(ssdata)
+    # print(ssdata)
     ss_url = []
     for i in ssdata:
         if i[3] != 'chacha20':
