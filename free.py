@@ -3,6 +3,9 @@ import requests
 from requests.adapters import HTTPAdapter
 import time
 from decode_ss import run
+import base64
+import json
+import re
 
 
 def ishadow():  # https://my.ishadowx.biz
@@ -66,13 +69,13 @@ def netlify():  # https://jiang.netlify.app/
     url = 'https://jiang.netlify.app/'
     header = {
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
-    resp = requests.get(url=url, headers=header)
-    return resp.text
+    resp = session.get(url=url, headers=header)
+    result = base64.b64decode(resp.text).decode()
+    arr_list = result.split('\n')[:-1]
+    return arr_list
 
 
 def youneed():   # https://www.youneed.win
-    import json
-    import re
     url = 'https://www.youneed.win/free-v2ray'
     header = {
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'}
@@ -111,37 +114,47 @@ def add():
     ishadow_data = ishadow()
     freev2ray_data = freev2ray()
     youneed_data = youneed()
-    sub = heroku+free_ss_data+ishadow_data+freev2ray_data+youneed_data
-    # vmess = ishadow()+freev2ray()+freess()
+    netlify_data = netlify()
+    sub = heroku+free_ss_data+ishadow_data+freev2ray_data+youneed_data+netlify_data
+    clash_list = []
+    for arr in sub:  # 清理不适用clash的SS加密方式
+        if 'ss://' in arr:
+            ss_link = re.findall('ss://(.*?)#.*', arr)
+            sl_decode = base64.b64decode(''.join(ss_link)).decode()
+            if sl_decode.split(':')[0] == 'chacha20':
+                continue
+            else:
+                clash_list.append(arr)
+        else:
+            clash_list.append(arr)
+
     print(timeformat(), '合并数据')
     print('-'*42)
-    return sub
+    return sub,clash_list
 
 
 def merge():
-    s = ''
-    v_url = add()
-    for i in range(len(v_url)):
-        if i == len(v_url)-1:
-            s = s + v_url[i]
-        else:
-            s = s + v_url[i]+'\n'
-    return s
+    allurl, clashurl = add()
+    all_list = '\n'.join(allurl)
+    clash_list = '\n'.join(clashurl)
+    # with open('temporary/sublist.txt', 'w', encoding='utf-8') as f:
+    #     f.write(s)
+    return all_list, clash_list
 
 
 def base64_encode():
-    import base64
-    data = merge()
-    subscribe = base64.b64encode(data.encode())
-    return subscribe.decode("utf-8")
+    all_list, clash_list = merge()
+    all_subscribe = base64.b64encode(all_list.encode()).decode("utf-8")
+    clash_subscribe = base64.b64encode(clash_list.encode()).decode("utf-8")
+    return all_subscribe, clash_subscribe
 
 
 def savefile():
-    a = base64_encode()
-    b = netlify()
-    add = b+'\n'+a
+    all_subscribe, clash_subscribe = base64_encode()
     with open('list.txt', 'w', encoding='utf-8') as f:
-        f.write(add)
+        f.write(all_subscribe)
+    with open('clashsub.txt', 'w', encoding='utf-8') as f:
+        f.write(clash_subscribe)
     print(timeformat(), '保存成功')
 
 

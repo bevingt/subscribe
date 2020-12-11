@@ -115,15 +115,10 @@ def run():
     # print(ssdata)
     ss_url = []
     for i in ssdata:
-        if i[3] != 'chacha20':
-            ssurl = i[3]+':'+i[4]+'@'+i[1]+':'+i[2]
-            # print(ssurl)
-            base_ssurl = base64.b64encode(ssurl.encode())
-            ss_url.append('ss://'+base_ssurl.decode("utf-8") +
-                          '#'+i[6]+'_free-ss.site')
-        else:
-            continue
-    # print(ss_url)
+        ssurl = i[4]+':'+i[3]+'@'+i[1]+':'+i[2]
+        base_ssurl = base64.b64encode(ssurl.encode())
+        ss_url.append('ss://'+base_ssurl.decode("utf-8") +
+                        '#'+i[6]+'_free-ss.site')
 
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), '读取free-ss数据成功')
     print('-'*42)
