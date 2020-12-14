@@ -7,6 +7,7 @@ import execjs
 import requests
 import re
 import parsel
+from code.timeFormat import timeFormat
 import time
 
 
@@ -91,7 +92,7 @@ def get_key():
     # print(key)
 
 
-def run():
+def main():
     while True:
         keys = get_key()
         a = keys[0]
@@ -116,12 +117,12 @@ def run():
         ss_url.append('ss://'+base_ssurl.decode("utf-8") +
                         '#'+i[6]+'_free-ss.site')
 
-    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), '读取free-ss数据成功')
+    print(timeFormat(), '读取free-ss数据成功')
     print('-'*42)
     return ss_url
 
 
 if __name__ == "__main__":
-    run()
+    main()
 
     # initial_value=int(binascii.hexlify(iv), 16)
