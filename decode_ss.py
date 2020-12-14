@@ -92,27 +92,23 @@ def get_key():
 
 
 def run():
-    count = 1
-    while count <= 2:
+    while True:
         keys = get_key()
         a = keys[0]
         b = keys[1]
         c = decode_c(keys[2])
-
         t = get_token()
+        time.sleep(1)
         ss = getdata3(a, b, c, t)
 
         key = bytes(a, encoding="utf-8")
         iv = bytes(b, encoding="utf-8")
         endata = base64.b64decode(str(ss))
         ssdata = decrypt_data(key, iv, endata)
-        if ssdata == None:
-            count = 1
-            time.sleep(1)
-            print('data3数据未抓到，重试')
+        if ssdata != None:
+            break
         else:
-            count += 1
-    # print(ssdata)
+            print('data3数据未抓到，重试')
     ss_url = []
     for i in ssdata:
         ssurl = i[4]+':'+i[3]+'@'+i[1]+':'+i[2]
