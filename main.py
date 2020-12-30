@@ -10,31 +10,31 @@ from code.timeFormat import timeFormat
 
 def ss_sub(ssToSubscribe):
     sub_addr = base64_encode(merge(ssToSubscribe))
-    savefile('ss-sub.txt', sub_addr)
+    savefile('sub/ss-sub.txt', sub_addr)
     clash_sub = clash(ssToSubscribe)
     removeTheProtocolIsNotAvailable = base64_encode(merge(clash_sub))
-    savefile('ss_removeTheProtocolIsNotAvailable.txt',
+    savefile('sub/ss_removeTheProtocolIsNotAvailable.txt',
              removeTheProtocolIsNotAvailable)
 
 
 def v2ray_sub(v2ToSubscribe):
     sub_addr = base64_encode(merge(v2ToSubscribe))
-    savefile('v2ray-sub.txt', sub_addr)
+    savefile('sub/v2ray-sub.txt', sub_addr)
 
 
 def ssr_sub(ssrToSubscribe):
     sub_addr = base64_encode(merge(ssrToSubscribe))
-    savefile('ssr-sub.txt', sub_addr)
+    savefile('sub/ssr-sub.txt', sub_addr)
 
 
 def trojan_sub(trojanToSubscribe):
     sub_addr = base64_encode(merge(trojanToSubscribe))
-    savefile('trojan-sub.txt', sub_addr)
+    savefile('sub/trojan-sub.txt', sub_addr)
 
 
 def all_sub(allToSubscribe):
     sub_addr = base64_encode(merge(allToSubscribe))
-    savefile('list.txt', sub_addr)
+    savefile('sub/all.txt', sub_addr)
 
 
 def merge(data):
