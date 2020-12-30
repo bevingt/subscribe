@@ -3,6 +3,9 @@
 每6小时更新
 
 ## 订阅地址
+<details>
+<summary>展开查看</summary>
+<pre><code>
 ### 全部订阅：
 
 `https://raw.githubusercontent.com/bevingt/subscribe/master/sub/all.txt`
@@ -26,3 +29,5 @@
 ### trojan订阅
 
 `https://raw.githubusercontent.com/bevingt/subscribe/master/sub/trojan-sub.txt`
+</code></pre>
+</details>
