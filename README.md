@@ -4,7 +4,7 @@
 
 ## 订阅地址
 - 全部订阅：
-'https://raw.githubusercontent.com/bevingt/subscribe/master/list.txt'
+`https://raw.githubusercontent.com/bevingt/subscribe/master/list.txt`
 
 - 适合clash的订阅
 `https://raw.githubusercontent.com/bevingt/subscribe/master/ss_removeTheProtocolIsNotAvailable.txt`
