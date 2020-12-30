@@ -2,7 +2,7 @@ import re
 import json
 import requests
 from requests.adapters import HTTPAdapter
-from timeFormat import timeFormat
+from code.timeFormat import timeFormat
 import base64
 
 
