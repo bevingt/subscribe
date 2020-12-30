@@ -7,7 +7,7 @@
 
 `https://raw.githubusercontent.com/bevingt/subscribe/master/sub/all.txt`
 
-### 适合clash的订阅
+### 适合clash的ss订阅
 
 `https://raw.githubusercontent.com/bevingt/subscribe/master/sub/ss_removeTheProtocolIsNotAvailable.txt`
 
