@@ -2,7 +2,7 @@ import re
 import json
 import requests
 from requests.adapters import HTTPAdapter
-from code.timeFormat import timeFormat
+from timeFormat import timeFormat
 import base64
 
 
@@ -53,7 +53,7 @@ def ss_Data_sorting(ss):
         sort = method+':'+password+'@'+server+':'+port
         base64_ss = base64.b64encode(sort.encode())
         ss_list.append('ss://'+base64_ss.decode("utf-8") +
-                       '#'+'_www.youneed.win')
+                       '#'+'youneed')
     return ss_list
 
 
@@ -105,5 +105,5 @@ def main(param):
 
 
 if __name__ == "__main__":
-    res = main('ss*')
+    res = main('v2ray')
     print(res)
