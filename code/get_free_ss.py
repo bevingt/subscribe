@@ -7,7 +7,7 @@ import execjs
 import requests
 import re
 import parsel
-from code.timeFormat import timeFormat
+from timeFormat import timeFormat
 import time
 
 
@@ -94,10 +94,14 @@ def get_key():
 
 def main():
     while True:
-        keys = get_key()
-        a = keys[0]
-        b = keys[1]
-        c = decode_c(keys[2])
+        try:
+            keys = get_key()
+            a = keys[0]
+            b = keys[1]
+            c = decode_c(keys[2])
+        except requests.exceptions.ReadTimeout:
+            print('连接超时，未获取keys')
+            break
         t = get_token()
         time.sleep(1)
         ss = getdata3(a, b, c, t)
@@ -111,12 +115,14 @@ def main():
         else:
             print('data3数据未抓到，重试')
     ss_url = []
-    for i in ssdata:
-        ssurl = i[4]+':'+i[3]+'@'+i[1]+':'+i[2]
-        base_ssurl = base64.b64encode(ssurl.encode())
-        ss_url.append('ss://'+base_ssurl.decode("utf-8") +
-                        '#'+i[6]+'_free-ss.site')
-
+    try:
+        for i in ssdata:
+            ssurl = i[4]+':'+i[3]+'@'+i[1]+':'+i[2]
+            base_ssurl = base64.b64encode(ssurl.encode())
+            ss_url.append('ss://'+base_ssurl.decode("utf-8") +
+                            '#'+i[6]+'_free-ss.site')
+    except UnboundLocalError:
+        return None
     print(timeFormat(), '读取free-ss数据成功')
     print('-'*42)
     return ss_url
