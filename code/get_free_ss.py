@@ -100,7 +100,8 @@ def main():
             b = keys[1]
             c = decode_c(keys[2])
         except requests.exceptions.ReadTimeout:
-            print('连接超时，未获取keys')
+            print(timeFormat(), 'free-ss连接超时，未能获取')
+            print('-'*42)
             break
         t = get_token()
         time.sleep(1)
