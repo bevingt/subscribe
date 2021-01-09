@@ -49,28 +49,26 @@ def savefile(filename, data):
 
 
 def main():
-    netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
-        netlify())
-    youneed_ss = youneed('ss')
-    # netlify_ss=netlify('ss')
-    free_ss = freess()
+    # netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
+    #     netlify())
+    # youneed_ss = youneed('ss')
+    # free_ss = freess()
     free_v2 = freev2ray()
-    ishadow_v2 = ishadow()
+    # ishadow_v2 = ishadow()
     youneed_v2 = youneed('v2ray')
-    # netlify_v2=netlify('v2ray')
-    youneed_ssr = youneed('ssr')
-    # netlefy_tro= netlify('trojan')
-    if free_ss == None:
-        ss_sub(youneed_ss+netlify_ss)
-        all_sub(youneed_ss+netlify_ss+free_v2+ishadow_v2 +
-            youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
-    else:
-        ss_sub(youneed_ss+netlify_ss+free_ss)
-        all_sub(youneed_ss+netlify_ss+free_ss+free_v2+ishadow_v2 +
-            youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
-    v2ray_sub(free_v2+ishadow_v2+youneed_v2+netlify_v2)
-    ssr_sub(youneed_ssr+netlify_ssr)
-    trojan_sub(netlify_tro)
+    # youneed_ssr = youneed('ssr')
+    # if free_ss == None:
+    #     ss_sub(youneed_ss+netlify_ss)
+    #     all_sub(youneed_ss+netlify_ss+free_v2+ishadow_v2 +
+    #         youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
+    # else:
+    #     ss_sub(youneed_ss+netlify_ss+free_ss)
+    #     all_sub(youneed_ss+netlify_ss+free_ss+free_v2+ishadow_v2 +
+    #         youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
+    v2ray_sub(free_v2+youneed_v2)
+    # v2ray_sub(free_v2+ishadow_v2+youneed_v2+netlify_v2)
+    # ssr_sub(youneed_ssr+netlify_ssr)
+    # trojan_sub(netlify_tro)
     
 
 
