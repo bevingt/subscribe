@@ -4,9 +4,6 @@ import requests
 from requests.adapters import HTTPAdapter
 from code.timeFormat import timeFormat
 import base64
-# from connectivityTest import *
-# from queue import Queue
-# from threading import Thread
 
 
 def getDataAddress(url):   # https://www.youneed.win
@@ -108,7 +105,7 @@ def ss_Data_sorting(ss):
         sort = method+':'+password+'@'+server+':'+port
         base64_ss = base64.b64encode(sort.encode())
         ss_list.append('ss://'+base64_ss.decode("utf-8") +
-                       '#'+'youneed')
+                       '#'+server)
     return ss_list
 
 
@@ -122,7 +119,7 @@ def ssr_Data_sorting(ssr):
         obfs = ssr[i+5]
         password = base64.b64encode(ssr[i+2].encode()).decode('utf-8')
         params_base64 = 'remarks=' + \
-            base64.b64encode('www.youneed.win'.encode()).decode('utf-8')
+            base64.b64encode(server.encode()).decode('utf-8')
 
         sort = server+':'+port+':'+protocol+':'+method + \
             ':'+obfs+':'+password+'/?'+params_base64
@@ -161,6 +158,6 @@ def main(param):
 
 if __name__ == "__main__":
     # res = queryIpAttribution()
-    res = main('v2ray')
+    res = main('ss')
     print(res)
     # queryIpAttribution()
