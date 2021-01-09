@@ -68,7 +68,7 @@ def main():
         ss_sub(youneed_ss+netlify_ss+free_ss)
         all_sub(youneed_ss+netlify_ss+free_ss+free_v2+ishadow_v2 +
             youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
-    v2ray_sub(free_v2+ishadow_v2+youneed_v2+netlify_v2)
+    v2ray_sub(free_v2+ishadow_v2+youneed_v2)
     ssr_sub(youneed_ssr+netlify_ssr)
     trojan_sub(netlify_tro)
     
