@@ -56,6 +56,7 @@ def main():
     free_v2 = freev2ray()
     # ishadow_v2 = ishadow()
     youneed_v2 = youneed('v2ray')
+<<<<<<< HEAD
     # youneed_ssr = youneed('ssr')
     # if free_ss == None:
     #     ss_sub(youneed_ss+netlify_ss)
@@ -69,6 +70,22 @@ def main():
     # v2ray_sub(free_v2+ishadow_v2+youneed_v2+netlify_v2)
     # ssr_sub(youneed_ssr+netlify_ssr)
     # trojan_sub(netlify_tro)
+=======
+    # netlify_v2=netlify('v2ray')
+    youneed_ssr = youneed('ssr')
+    # netlefy_tro= netlify('trojan')
+    if free_ss == None:
+        ss_sub(youneed_ss+netlify_ss)
+        all_sub(youneed_ss+netlify_ss+free_v2+ishadow_v2 +
+            youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
+    else:
+        ss_sub(youneed_ss+netlify_ss+free_ss)
+        all_sub(youneed_ss+netlify_ss+free_ss+free_v2+ishadow_v2 +
+            youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
+    v2ray_sub(free_v2+ishadow_v2+youneed_v2)
+    ssr_sub(youneed_ssr+netlify_ssr)
+    trojan_sub(netlify_tro)
+>>>>>>> 1a1c2a331da5ee037210805e6e6ef0226f86d365
     
 
 
