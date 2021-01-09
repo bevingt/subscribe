@@ -60,7 +60,8 @@ def get_v2ray(data):
         attribution = checkip(i)
         for j in range(len(attribution)):
             if attribution[j]['status'] == 'fail':
-                contentList[j+cont]['ps'] = contentList[j+cont]['add']
+                # contentList[j+cont]['ps'] = contentList[j+cont]['add']
+                continue
             else:
                 contentList[j+cont]['ps'] = attribution[j]['countryCode'] + \
                     attribution[j]['country']+'_'+contentList[j+cont]['add']
@@ -68,10 +69,10 @@ def get_v2ray(data):
         cont += 100
 
     protocol = 'vmess://'
-    vm = []
+    v2 = []
     for i in resultIP:
-        vm.append(protocol+base64.b64encode(str(i).encode('utf-8')).decode('utf-8'))
-    return vm
+        v2.append(protocol+base64.b64encode(str(i).encode('utf-8')).decode('utf-8'))
+    return v2
     # return result
 
 
