@@ -7,9 +7,9 @@ import execjs
 import requests
 import re
 import parsel
-from code.timeFormat import timeFormat
+from timeFormat import timeFormat
 import time
-
+from fake_useragent import UserAgent
 
 def decrypt_data(key, iv, endata):
     ctr = Counter.new(128, initial_value=int(binascii.hexlify(iv), 16))
@@ -65,7 +65,7 @@ def getdata3(a, b, c, token):
     }
     url = 'https://free-ss.site/data3.php'
     headers = {
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'user-agent': UserAgent().chrome
     }
     resp = requests.post(url=url, headers=headers, data=url_data, timeout=10)
     if resp.status_code == 200:
@@ -78,7 +78,7 @@ def getdata3(a, b, c, token):
 def get_key():
     url = 'https://free-ss.site'
     headers = {
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        'user-agent': UserAgent().chrome
     }
     resp = requests.get(url=url, headers=headers, timeout=10)
     if resp.status_code == 200:
