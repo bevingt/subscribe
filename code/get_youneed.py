@@ -69,9 +69,7 @@ def get_v2ray(data):
     v2 = []
     for i in resultIP:
         s=str(i).replace('\'','\"')
-        print(s)
         encode_v2=base64.b64encode(s.encode('utf-8')).decode('utf-8')
-        # print(encode_v2)
         v2.append(protocol+encode_v2)
     return v2
     # return result
