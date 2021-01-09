@@ -7,7 +7,7 @@ import execjs
 import requests
 import re
 import parsel
-from timeFormat import timeFormat
+from code.timeFormat import timeFormat
 import time
 from fake_useragent import UserAgent
 
