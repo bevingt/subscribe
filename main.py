@@ -6,7 +6,7 @@ from code.get_free_ss import main as freess
 from code.screeningClashAvailable import clash
 from code.transcoding import base64_encode
 from code.timeFormat import timeFormat
-
+from code.queryIpAttribution import testing
 
 def ss_sub(ssToSubscribe):
     sub_addr = base64_encode(merge(ssToSubscribe))
@@ -52,21 +52,27 @@ def main():
     netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
         netlify())
     youneed_ss = youneed('ss')
-    free_ss = freess()
+    # free_ss = freess()
     free_v2 = freev2ray()
     ishadow_v2 = ishadow()
     youneed_v2 = youneed('v2ray')
     youneed_ssr = youneed('ssr')
+
+    v2ray=free_v2+ishadow_v2+youneed_v2+netlify_v2
+    ss=youneed_ss+netlify_ss
+    ssr=youneed_ssr+netlify_ssr
+
+    v2rayIPtesting=testing(v2ray)
+
     if free_ss == None:
-        ss_sub(youneed_ss+netlify_ss)
-        all_sub(youneed_ss+netlify_ss+free_v2+ishadow_v2 +
-            youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
+        ss_sub(ss)
+        all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
     else:
-        ss_sub(youneed_ss+netlify_ss+free_ss)
-        all_sub(youneed_ss+netlify_ss+free_ss+free_v2+ishadow_v2 +
-            youneed_v2+netlify_v2+youneed_ssr+netlify_ssr+netlify_tro)
-    v2ray_sub(free_v2+ishadow_v2+youneed_v2+netlify_v2)
-    ssr_sub(youneed_ssr+netlify_ssr)
+        ss_sub(ss+free_ss)
+        all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
+
+    v2ray_sub(v2rayIPtesting)
+    ssr_sub(ssr)
     trojan_sub(netlify_tro)
     
 
