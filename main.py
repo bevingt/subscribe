@@ -52,7 +52,7 @@ def main():
     netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
         netlify())
     youneed_ss = youneed('ss')
-    # free_ss = freess()
+    free_ss = freess()
     free_v2 = freev2ray()
     ishadow_v2 = ishadow()
     youneed_v2 = youneed('v2ray')
