@@ -49,9 +49,9 @@ def savefile(filename, data):
 
 
 def main():
-    # netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
-    #     netlify())
-    netlify_v2=distinguishTheAgreement(netlify())[3]
+    netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
+        netlify())
+    # netlify_v2=distinguishTheAgreement(netlify())[3]
     # youneed_ss = youneed('ss')
     # free_ss = freess()
     free_v2 = freev2ray()
