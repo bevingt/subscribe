@@ -6,7 +6,7 @@ from code.get_free_ss import main as freess
 from code.screeningClashAvailable import clash
 from code.transcoding import base64_encode
 from code.timeFormat import timeFormat
-from code.queryIpAttribution import testing
+# from code.queryIpAttribution import testing
 
 def ss_sub(ssToSubscribe):
     sub_addr = base64_encode(merge(ssToSubscribe))
@@ -62,14 +62,16 @@ def main():
     ss=youneed_ss+netlify_ss
     ssr=youneed_ssr+netlify_ssr
 
-    v2rayIPtesting=testing(v2ray)
+    # v2rayIPtesting=testing(v2ray)
 
     if free_ss == None:
         ss_sub(ss)
-        all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
+        # all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
+        all_sub(v2ray+ss+ssr+netlify_tro)
     else:
         ss_sub(ss+free_ss)
-        all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
+        all_sub(ss+free_ss+v2ray+ssr+netlify_tro)
+        # all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
 
     v2ray_sub(v2rayIPtesting)
     ssr_sub(ssr)
