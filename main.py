@@ -63,7 +63,7 @@ def main():
     ss=youneed_ss+netlify_ss
     ssr=youneed_ssr+netlify_ssr
 
-    # v2rayIPtesting=testing(v2ray)
+    v2rayIPtesting=testing(v2ray)
 
     if free_ss == None:
         ss_sub(ss)
