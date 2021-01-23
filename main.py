@@ -52,20 +52,19 @@ def main():
     netlify_ss, netlify_ssr, netlify_v2, netlify_tro = distinguishTheAgreement(
         netlify())
     # netlify_v2=distinguishTheAgreement(netlify())[3]
-    # youneed_ss = youneed('ss')
-    # free_ss = freess()
+    youneed_ss = youneed('ss')
+    free_ss = freess()
     free_v2 = freev2ray()
     ishadow_v2 = ishadow()
     youneed_v2 = youneed('v2ray')
-    # youneed_ssr = youneed('ssr')
+    youneed_ssr = youneed('ssr')
 
     v2ray=free_v2+ishadow_v2+youneed_v2+netlify_v2
-    # ss=youneed_ss+netlify_ss
-    # ssr=youneed_ssr+netlify_ssr
+    ss=youneed_ss+netlify_ss
+    ssr=youneed_ssr+netlify_ssr
 
     # v2rayIPtesting=testing(v2ray)
 
-<<<<<<< HEAD
     if free_ss == None:
         ss_sub(ss)
         # all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
@@ -74,18 +73,10 @@ def main():
         ss_sub(ss+free_ss)
         all_sub(ss+free_ss+v2ray+ssr+netlify_tro)
         # all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
-=======
-    # if free_ss == None:
-    #     ss_sub(ss)
-    #     all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
-    # else:
-    #     ss_sub(ss+free_ss)
-    #     all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
->>>>>>> a08c5a6ee2cdc4402de1fbb6a533a98f45afab1d
 
     v2ray_sub(v2rayIPtesting)
-    # ssr_sub(ssr)
-    # trojan_sub(netlify_tro)
+    ssr_sub(ssr)
+    trojan_sub(netlify_tro)
     
 
 
