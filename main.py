@@ -74,7 +74,8 @@ def main():
         all_sub(ss+free_ss+v2ray+ssr+netlify_tro)
         # all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
 
-    v2ray_sub(v2rayIPtesting)
+    v2ray_sub(v2ray)
+    # v2ray_sub(v2rayIPtesting)
     ssr_sub(ssr)
     trojan_sub(netlify_tro)
     
