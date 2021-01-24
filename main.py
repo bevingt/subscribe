@@ -58,26 +58,23 @@ def main():
     ishadow_v2 = ishadow()
     youneed_v2 = youneed('v2ray')
     youneed_ssr = youneed('ssr')
-
-    v2ray=free_v2+ishadow_v2+youneed_v2+netlify_v2
-    ss=youneed_ss+netlify_ss
     ssr=youneed_ssr+netlify_ssr
+    v2ray=free_v2+ishadow_v2+youneed_v2+netlify_v2
+
+    if free_ss == None:
+        ss=clash(youneed_ss+netlify_ss)
+    else:
+        ss=clash(youneed_ss+netlify_ss+free_ss)
 
     v2rayIPtesting=testing(v2ray)
 
-    if free_ss == None:
-        ss_sub(ss)
-        all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
-        # all_sub(v2ray+ss+ssr+netlify_tro)
-    else:
-        ss_sub(ss+free_ss)
-        # all_sub(ss+free_ss+v2ray+ssr+netlify_tro)
-        all_sub(ss+free_ss+v2rayIPtesting+ssr+netlify_tro)
+    ss_sub(ss)
 
     # v2ray_sub(v2ray)
     v2ray_sub(v2rayIPtesting)
     ssr_sub(ssr)
     trojan_sub(netlify_tro)
+    all_sub(v2rayIPtesting+ss+ssr+netlify_tro)
     
 
 
