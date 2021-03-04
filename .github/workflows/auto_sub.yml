@@ -27,8 +27,8 @@ jobs:
           # cd paper_infos
           python main.py
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v5
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v7.1.0
         with:
           # author_name: Your Name
           # author_email: mail@example.com
