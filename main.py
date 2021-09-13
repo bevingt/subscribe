@@ -68,7 +68,7 @@ def main():
 
     v2rayIPtesting=testing(v2ray)
 
-    ss_sub(ss)
+#     ss_sub(ss)
 
     # v2ray_sub(v2ray)
     v2ray_sub(v2rayIPtesting)
