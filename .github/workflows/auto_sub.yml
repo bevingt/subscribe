@@ -28,7 +28,7 @@ jobs:
           python main.py
 
       - name: Add & Commit
-        uses: EndBug/add-and-commit@v7.1.0
+        uses: EndBug/add-and-commit@v7.3.0
         with:
           # author_name: Your Name
           # author_email: mail@example.com
