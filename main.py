@@ -61,10 +61,10 @@ def main():
     ssr=youneed_ssr+netlify_ssr
     v2ray=free_v2+ishadow_v2+youneed_v2+netlify_v2
 
-    if free_ss == None:
-        ss=clash(youneed_ss+netlify_ss)
-    else:
-        ss=clash(youneed_ss+netlify_ss+free_ss)
+#     if free_ss == None:
+#         ss=clash(youneed_ss+netlify_ss)
+#     else:
+#         ss=clash(youneed_ss+netlify_ss+free_ss)
 
     v2rayIPtesting=testing(v2ray)
 
